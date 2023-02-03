@@ -1,0 +1,127 @@
+import { Link } from "react-router-dom";
+import { useState } from "react";
+import { toast } from "react-toastify";
+
+import vlidateRegister from "../../validators/validate-register";
+
+const initialInput = {
+  firstName: "",
+  lastName: "",
+  email: "",
+  mobile: "",
+  password: "",
+  confirmPassword: ""
+};
+
+export default function RegisterForm() {
+  const [input, setInput] = useState(initialInput);
+  const [error, setError] = useState({});
+
+  const handleChangeInput = (e) => {
+    setInput({ ...input, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmitForm = async (e) => {
+    try {
+      e.preventDefault();
+      const result = vlidateRegister(input);
+      if (result) {
+        setError(result);
+      } else {
+        setError({});
+        // startLoading();
+        console.log("api");
+        // await AuthApi.register(input);
+        setInput(initialInput);
+        toast.success("Success register.Please login to continue");
+      }
+    } catch (err) {
+      // console.log(err)
+      toast.error(err.response?.data.message);
+    } finally {
+      // stopLoading();
+    }
+  };
+  return (
+    <>
+      <div className=" flex justify-center items-center container h-[75vh] w-[100vw] mx-auto  ">
+        <div className="mt-[15vh] border h-[80vh] w-[450px] p-[30px] flex-col justify-center flex items-center shadow-xl">
+          <h1 className="mb-1 text-2xl font-semibold">Sign In</h1>
+          {/* <p className="font-thin">Please login using account detail bellow.</p> */}
+          <form
+            className="flex flex-col gap-2 justify-center items-center "
+            onSubmit={handleSubmitForm}
+          >
+            <input
+              type="text"
+              name="firstName"
+              className={`focus:outline-none focus:border-slate-500 pl-2 bg- from-slate-400 rounded-sm h-8 w-[400px] mt-6 border ${
+                error.firstName ? "border-[#e02121]" : "border-[silver]"
+              } `}
+              placeholder="First Name"
+              value={input.firstName}
+              onChange={handleChangeInput}
+            />
+            <input
+              type="text"
+              name="lastName"
+              className={`focus:outline-none focus:border-slate-500 pl-2 bg- from-slate-400 rounded-sm h-8 w-[400px] mt-4 border ${
+                error.lastName ? "border-[#e02121]" : "border-[silver]"
+              } `}
+              placeholder="Last Name"
+              value={input.lastName}
+              onChange={handleChangeInput}
+            />
+            <input
+              type="text"
+              name="email"
+              className={`focus:outline-none focus:border-slate-500 pl-2 bg- from-slate-400 rounded-sm h-8 w-[400px] mt-4 border ${
+                error.email ? "border-[#e02121]" : "border-[silver]"
+              } `}
+              placeholder="Email address"
+              value={input.email}
+              onChange={handleChangeInput}
+            />
+            <input
+              type="text"
+              name="mobile"
+              className={`focus:outline-none focus:border-slate-500 pl-2 bg- from-slate-400 rounded-sm h-8 w-[400px] mt-4 border ${
+                error.mobile ? "border-[#e02121]" : "border-[silver]"
+              } `}
+              placeholder="phone number"
+              value={input.mobile}
+              onChange={handleChangeInput}
+            />
+            <input
+              type="password"
+              name="password"
+              className={`focus:outline-none focus:border-slate-500 pl-2 bg- from-slate-400 rounded-sm h-8 w-[400px] mt-4 border ${
+                error.password ? "border-[#e02121]" : "border-[silver]"
+              } `}
+              placeholder="Password"
+              value={input.password}
+              onChange={handleChangeInput}
+            />
+            <input
+              type="password"
+              name="confirmPassword"
+              className={`focus:outline-none focus:border-slate-500 pl-2 bg- from-slate-400 rounded-sm h-8 w-[400px] mt-4 border ${
+                error.confirmPassword ? "border-[#e02121]" : "border-[silver]"
+              } `}
+              placeholder="Confirm Password"
+              value={input.confirmPassword}
+              onChange={handleChangeInput}
+            />
+            <button className=" mt-6 text-sm text-black font-semibold bg-pink-400 h-[35px] w-[200px] rounded-sm hover:text-white hover:bg-purple-900 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-1">
+              Log In
+            </button>
+
+            <Link className="text-sm font-extralight " to="/register">
+              Don’t have an Account?Create account
+            </Link>
+          </form>
+        </div>
+      </div>
+    </>
+  );
+}

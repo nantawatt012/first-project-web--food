@@ -7,7 +7,7 @@ export default function HeaderMenu() {
       {/* if already login */}
       <Link
         className="mr-2 px-4 py-1 text-sm text-white font-semibold  hover:border-transparent  hover:font-semibold hover:text-black"
-        to="/order"
+        to="/cart"
       >
         Cart
       </Link>
