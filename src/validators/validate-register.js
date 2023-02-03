@@ -21,7 +21,8 @@ const registerSchema = Joi.object({
     .messages({
       "any.only": "password and confirm password did not match",
       "string.empty": "confirm password is required"
-    })
+    }),
+  role: Joi.string().required()
 });
 
 const vlidateRegister = (input) => {

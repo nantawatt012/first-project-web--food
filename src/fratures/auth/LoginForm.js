@@ -1,24 +1,25 @@
 import { useState } from "react";
 import { toast } from "react-toastify";
-
 import { Link } from "react-router-dom";
 
+import useAuth from "../../hooks/useAuth";
+
 export default function LoginForm() {
-  const [emailOrMobile, setEmailOrMobile] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  // const {login}= useAuth()
+  const { login } = useAuth();
 
-  // const handleSubmitForm = async (e) => {
-  //   try {
-  //     e.preventDefault();
-  //     await login(emailOrMobile, password);
-  //     TransformStream.success("sucess login");
-  //   } catch (err) {
-  //     console.log(err);
-  //     toast.error(err.response?.data.message);
-  //   }
-  // };
+  const handleSubmitForm = async (e) => {
+    try {
+      e.preventDefault();
+      await login(email, password);
+      TransformStream.success("sucess login");
+    } catch (err) {
+      console.log(err);
+      toast.error(err.response?.data.message);
+    }
+  };
 
   return (
     <>
@@ -28,14 +29,14 @@ export default function LoginForm() {
           <p className="font-thin">Please login using account detail bellow.</p>
           <form
             className="flex flex-col gap-3 justify-center items-center "
-            // onSubmit={handleSubmitForm}
+            onSubmit={handleSubmitForm}
           >
             <input
               type="text"
               className="focus:outline-none focus:border-slate-500 pl-2 bg- from-slate-400 rounded-sm h-8 w-[400px] mt-8 border border-[silver]"
-              placeholder="Email address or phone number"
-              value={emailOrMobile}
-              onChange={(e) => setEmailOrMobile(e.target.value)}
+              placeholder="Email address"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
             <input
               type="password"
@@ -49,7 +50,7 @@ export default function LoginForm() {
             </button>
 
             <Link className="text-sm font-extralight " to="/register">
-              Don’t have an Account?Create account
+              Don't have an Account?Create account
             </Link>
           </form>
         </div>

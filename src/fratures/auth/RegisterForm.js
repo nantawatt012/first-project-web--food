@@ -1,7 +1,9 @@
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { useState } from "react";
 import { toast } from "react-toastify";
 
+import * as AuthApi from "../../apis/auth-api";
+import useLoading from "../../hooks/useLoading";
 import vlidateRegister from "../../validators/validate-register";
 
 const initialInput = {
@@ -10,12 +12,16 @@ const initialInput = {
   email: "",
   mobile: "",
   password: "",
-  confirmPassword: ""
+  confirmPassword: "",
+  role: "customer"
 };
 
 export default function RegisterForm() {
   const [input, setInput] = useState(initialInput);
   const [error, setError] = useState({});
+  const [complete, setComplete] = useState(false);
+
+  const { startLoading, stopLoading } = useLoading();
 
   const handleChangeInput = (e) => {
     setInput({ ...input, [e.target.name]: e.target.value });
@@ -25,25 +31,27 @@ export default function RegisterForm() {
     try {
       e.preventDefault();
       const result = vlidateRegister(input);
+
       if (result) {
         setError(result);
       } else {
         setError({});
-        // startLoading();
-        console.log("api");
-        // await AuthApi.register(input);
+        startLoading();
+        await AuthApi.register(input);
         setInput(initialInput);
         toast.success("Success register.Please login to continue");
+        setComplete(true);
       }
     } catch (err) {
       // console.log(err)
       toast.error(err.response?.data.message);
     } finally {
-      // stopLoading();
+      stopLoading();
     }
   };
   return (
     <>
+      {!complete || <Navigate to={"/login"} />}
       <div className=" flex justify-center items-center container h-[75vh] w-[100vw] mx-auto  ">
         <div className="mt-[15vh] border h-[80vh] w-[450px] p-[30px] flex-col justify-center flex items-center shadow-xl">
           <h1 className="mb-1 text-2xl font-semibold">Sign In</h1>
@@ -112,6 +120,30 @@ export default function RegisterForm() {
               value={input.confirmPassword}
               onChange={handleChangeInput}
             />
+            <span>
+              <input
+                type="radio"
+                id="customer"
+                name="role"
+                value="customer"
+                defaultChecked
+                onChange={handleChangeInput}
+              />
+              <label for="customer">For Shopping </label>
+
+              <input
+                type="radio"
+                id="seller"
+                name="role"
+                value="seller"
+                onChange={handleChangeInput}
+              />
+              <label for="seller"> For Selling</label>
+            </span>
+
+            {/* <input type="radio" id="ad" name="role" value="ad" />
+            <label for="ad">For admin</label>
+            <br /> */}
             <button className=" mt-6 text-sm text-black font-semibold bg-pink-400 h-[35px] w-[200px] rounded-sm hover:text-white hover:bg-purple-900 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-1">
               Log In
             </button>
