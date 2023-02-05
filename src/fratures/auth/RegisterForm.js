@@ -1,4 +1,4 @@
-import { Link, Navigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import { useState } from "react";
 import { toast } from "react-toastify";
 
@@ -54,7 +54,7 @@ export default function RegisterForm() {
       {!complete || <Navigate to={"/login"} />}
       <div className=" flex justify-center items-center container h-[75vh] w-[100vw] mx-auto  ">
         <div className="mt-[15vh] border h-[80vh] w-[450px] p-[30px] flex-col justify-center flex items-center shadow-xl">
-          <h1 className="mb-1 text-2xl font-semibold">Sign In</h1>
+          <h1 className="mb-1 text-2xl font-semibold">Register User</h1>
           {/* <p className="font-thin">Please login using account detail bellow.</p> */}
           <form
             className="flex flex-col gap-2 justify-center items-center "
@@ -120,6 +120,7 @@ export default function RegisterForm() {
               value={input.confirmPassword}
               onChange={handleChangeInput}
             />
+            <br />
             <span>
               <input
                 type="radio"
@@ -141,16 +142,9 @@ export default function RegisterForm() {
               <label for="seller"> For Selling</label>
             </span>
 
-            {/* <input type="radio" id="ad" name="role" value="ad" />
-            <label for="ad">For admin</label>
-            <br /> */}
             <button className=" mt-6 text-sm text-black font-semibold bg-pink-400 h-[35px] w-[200px] rounded-sm hover:text-white hover:bg-purple-900 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-1">
-              Log In
+              Create
             </button>
-
-            <Link className="text-sm font-extralight " to="/register">
-              Don’t have an Account?Create account
-            </Link>
           </form>
         </div>
       </div>

@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 
 export default function Brand() {
   return (
-    <div className="py-2">
-      <Link to="/">Food</Link>
+    <div className="py-2 ">
+      <Link to="/">Logo</Link>
     </div>
   );
 }

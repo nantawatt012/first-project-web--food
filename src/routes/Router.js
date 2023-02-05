@@ -1,4 +1,5 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import RedirectIfAuthenticate from "../fratures/auth/redirectIfAuthen";
 import CartPage from "../pages/CartPage";
 import HomePage from "../pages/HomePage";
 import LoginPage from "../pages/LoginPage";
@@ -14,7 +15,15 @@ const router = createBrowserRouter([
   },
   {
     path: "/login",
-    element: <LoginPage />
+    element: (
+      <RedirectIfAuthenticate>
+        <LoginPage />
+      </RedirectIfAuthenticate>
+    )
+  },
+  {
+    path: "/register",
+    element: <RegisterPage />
   },
   {
     path: "/shop",
@@ -31,10 +40,6 @@ const router = createBrowserRouter([
   {
     path: "/cart",
     element: <CartPage />
-  },
-  {
-    path: "/register",
-    element: <RegisterPage />
   }
 ]);
 
