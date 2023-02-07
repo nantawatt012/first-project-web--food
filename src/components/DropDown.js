@@ -8,6 +8,9 @@ export default function DropDown() {
   const handleDropDown = () => {
     setOpen(!isOpen);
   };
+  const {
+    authenticatedUser: { role, id }
+  } = useAuth();
 
   return (
     <div className=" dropdown">
@@ -41,9 +44,14 @@ export default function DropDown() {
       >
         <ul className=" z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow ">
           <li>
-            <Link to={"/user"} className="block py-2 px-4 hover:bg-gray-100">
-              Edit Profile
-            </Link>
+            {
+              <Link
+                to={`${role === "customer" ? "/user" : `/shop/${id}`}`}
+                className="block py-2 px-4 hover:bg-gray-100"
+              >
+                {`${role === "customer" ? `Edit Profile` : `Shop Custom`}`}
+              </Link>
+            }
           </li>
           <li>
             <a href="#" className="block py-2 px-4 hover:bg-gray-100">

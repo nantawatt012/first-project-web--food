@@ -130,7 +130,7 @@ export default function RegisterForm() {
                 defaultChecked
                 onChange={handleChangeInput}
               />
-              <label for="customer">For Shopping </label>
+              <label htmlFor="customer">For Shopping </label>
 
               <input
                 type="radio"
@@ -139,7 +139,7 @@ export default function RegisterForm() {
                 value="seller"
                 onChange={handleChangeInput}
               />
-              <label for="seller"> For Selling</label>
+              <label htmlFor="seller"> For Selling</label>
             </span>
 
             <button className=" mt-6 text-sm text-black font-semibold bg-pink-400 h-[35px] w-[200px] rounded-sm hover:text-white hover:bg-purple-900 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-1">

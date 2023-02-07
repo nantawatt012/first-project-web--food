@@ -14,7 +14,7 @@ export default function LoginForm() {
     try {
       e.preventDefault();
       await login(email, password);
-      TransformStream.success("sucess login");
+      toast.success("Successss login");
     } catch (err) {
       console.log(err);
       toast.error(err.response?.data.message);

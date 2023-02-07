@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import DropDown from "../../components/DropDown";
-// import { FacebookLogo } from "../icons";
 
 export default function HeaderMenu() {
   const { authenticatedUser } = useAuth();

@@ -8,6 +8,7 @@ import {
   removeAccessToken,
   setAccessToken
 } from "../utils/local-storage";
+import { Navigate } from "react-router-dom";
 
 export const AuthContext = createContext();
 
@@ -39,6 +40,7 @@ export default function AuthContextProvider({ children }) {
 
   const logout = () => {
     removeAccessToken();
+    <Navigate to={"/"} />;
     setAuthenticatedUser(null);
   };
 
