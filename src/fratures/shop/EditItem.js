@@ -1,20 +1,21 @@
 import { useState } from "react";
 import useLoading from "../../hooks/useLoading";
 import * as ShopApi from "../../apis/shop-api";
-import validateCreateItem from "../../validators/validate-create-item";
+import validateEditItem from "../../validators/validate-edit-item";
+import { useParams } from "react-router-dom";
 
-// const initialInput = {
-//   name: "",
-//   price: "",
-//   type: "",
-//   description: "",
-//   itemLeft: ""
-// };
-export default function CreateItem(items) {
+export default function EditItem({
+  items,
+  setRefresh,
+  index,
+  refresh,
+  setShowModal
+}) {
   const { startLoading, stopLoading } = useLoading();
 
   const [input, setInput] = useState(items);
   // const [error, setError] = useState({});
+  const { shopId } = useParams();
 
   const handleChangeInput = (e) => {
     setInput({ ...input, [e.target.name]: e.target.value });
@@ -23,15 +24,20 @@ export default function CreateItem(items) {
   const handleSubmitForm = async (e) => {
     try {
       e.preventDefault();
-      const result = validateCreateItem(input);
+      const result = validateEditItem(input);
       if (result) {
         // setError(result);
         // console.log(result);
       } else {
+        console.log(input, shopId);
         startLoading();
-        console.log(input);
-        await ShopApi.createItem(input);
-        setInput(items);
+        await ShopApi.updateItem(input, shopId);
+        // const cloneItem = structuredClone(items);
+        // cloneItem[index] = { ...input };
+        // console.log(Object.values(input));
+        // console.log(cloneItem)
+        setRefresh(!refresh);
+        setShowModal(false);
       }
     } catch (err) {
       // console.log(err);
@@ -98,7 +104,10 @@ export default function CreateItem(items) {
           />
           <label htmlFor="snag">Snak</label>
         </span>
-        <button className="mr-2 px-4 py-1 text-sm text-black font-semibold rounded-full border bg-slate-100 border-purple-200 hover:text-black hover:bg-slate-200 hover:border-transparent focus:outline-none focus:ring-slate-100 focus:ring-offset-1">
+        <button
+          type="submit"
+          className="mr-2 px-4 py-1 text-sm text-black font-semibold rounded-full border bg-slate-100 border-purple-200 hover:text-black hover:bg-slate-200 hover:border-transparent focus:outline-none focus:ring-slate-100 focus:ring-offset-1"
+        >
           Save Change
         </button>
       </form>

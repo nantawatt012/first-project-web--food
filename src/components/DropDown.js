@@ -1,13 +1,15 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 
 export default function DropDown() {
   const [isOpen, setOpen] = useState(false);
   const { logout } = useAuth();
+
   const handleDropDown = () => {
     setOpen(!isOpen);
   };
+
   const {
     authenticatedUser: { role, id }
   } = useAuth();
@@ -59,12 +61,13 @@ export default function DropDown() {
             </a>
           </li>
           <li>
-            <button
+            <Link
+              to={"/"}
               onClick={logout}
               className=" text-red-500 block py-2 px-4 hover:bg-gray-100 pr-[90px]"
             >
               Log out
-            </button>
+            </Link>
           </li>
         </ul>
       </div>

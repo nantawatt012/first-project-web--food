@@ -3,6 +3,7 @@ import RedirectIfAuthenticate from "../fratures/auth/redirectIfAuthen";
 import CartPage from "../pages/CartPage";
 import HomePage from "../pages/HomePage";
 import LoginPage from "../pages/LoginPage";
+import NotFound from "../pages/NotFound";
 import OrderPage from "../pages/OrderPage";
 import RegisterPage from "../pages/RegisterPage";
 import ShopPage from "../pages/ShopPage";
@@ -26,7 +27,7 @@ const router = createBrowserRouter([
     element: <RegisterPage />
   },
   {
-    path: "/shop/:userId",
+    path: "/shop/:shopId",
     element: <ShopPage />
   },
   {
@@ -40,6 +41,10 @@ const router = createBrowserRouter([
   {
     path: "/cart",
     element: <CartPage />
+  },
+  {
+    path: "*",
+    element: <NotFound />
   }
 ]);
 

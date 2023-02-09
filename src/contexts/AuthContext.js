@@ -8,13 +8,12 @@ import {
   removeAccessToken,
   setAccessToken
 } from "../utils/local-storage";
-import { Navigate } from "react-router-dom";
 
 export const AuthContext = createContext();
 
 export default function AuthContextProvider({ children }) {
   const [authenticatedUser, setAuthenticatedUser] = useState(
-    haveAccessToken() ? true : null
+    haveAccessToken() ? true : { id: 0, role: "guest" }
   );
 
   useEffect(() => {
@@ -40,8 +39,7 @@ export default function AuthContextProvider({ children }) {
 
   const logout = () => {
     removeAccessToken();
-    <Navigate to={"/"} />;
-    setAuthenticatedUser(null);
+    setAuthenticatedUser({ id: 0, role: "guest" });
   };
 
   const updateProfile = (data) => {

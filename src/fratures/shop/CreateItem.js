@@ -10,7 +10,7 @@ const initialInput = {
   description: "",
   itemLeft: ""
 };
-export default function CreateItem() {
+export default function CreateItem({ setRefresh, refresh }) {
   const { startLoading, stopLoading } = useLoading();
 
   const [input, setInput] = useState(initialInput);
@@ -32,6 +32,7 @@ export default function CreateItem() {
         console.log(input);
         await ShopApi.createItem(input);
         setInput(initialInput);
+        setRefresh(!refresh);
       }
     } catch (err) {
       // console.log(err);

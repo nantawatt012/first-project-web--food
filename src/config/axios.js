@@ -8,7 +8,7 @@ axios.interceptors.request.use(
     if (haveAccessToken()) {
       config.headers.authorization = `Bearer ${haveAccessToken()}`;
     }
-    console.log(config);
+    // console.log(config);
     return config;
   },
   (err) => {
