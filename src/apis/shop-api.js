@@ -9,3 +9,5 @@ export const deleteItem = (shopId, itemId) =>
   axios.delete(`/shop/${+shopId}/${itemId}`);
 
 export const getShopOwner = (shopId) => axios.get(`/shop/owner/${+shopId}`);
+
+export const addItem = (itemId) => axios.post("shop/addToCart", itemId);

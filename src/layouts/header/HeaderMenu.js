@@ -4,14 +4,14 @@ import DropDown from "../../components/DropDown";
 
 export default function HeaderMenu() {
   const {
-    authenticatedUser: { role }
+    authenticatedUser: { id, role }
   } = useAuth();
   return (
     <div className="py-2 flex justify-center items-center">
       {role === "customer" ? (
         <Link
           className="mr-2 px-4 py-1 text-sm text-white font-semibold  hover:border-transparent  hover:font-semibold hover:text-black"
-          to="/cart"
+          to={`/cart/${id}`}
         >
           Cart
         </Link>

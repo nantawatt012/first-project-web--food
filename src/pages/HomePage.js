@@ -7,7 +7,9 @@ export default function HomePage() {
     <>
       <Header />
       <SlideShow />
-      <h1>Home</h1>
+      {/* send item to slideshow */}
+      <h1 className="text-center text-xl mt-8">Product</h1>
+      {/* product // shop  */}
     </>
   );
 }

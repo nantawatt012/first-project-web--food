@@ -30,6 +30,17 @@ export default function ItemAction({ items, setRefresh, index, refresh }) {
     }
   };
 
+  const handleAddToCart = async () => {
+    try {
+      // startLoading();
+      await ShopApi.addItem({ items });
+      setRefresh(!refresh);
+    } catch (err) {
+      console.log(err);
+    } finally {
+    }
+  };
+
   return (
     /// seller action
     // for seller only where userid == shopid
@@ -74,6 +85,7 @@ export default function ItemAction({ items, setRefresh, index, refresh }) {
             type="button"
             className="mr-4 px-6 py-1 text-sm text-black font-semibold rounded-full border bg-slate-100 border-purple-200 hover:text-black hover:bg-purple-100 hover:border-transparent 
         focus:outline-none focus:ring-slate-100  focus:ring-offset-1"
+            onClick={handleAddToCart}
           >
             Add to cart
           </button>
