@@ -55,11 +55,16 @@ export default function DropDown() {
               </Link>
             }
           </li>
-          <li>
-            <a href="#" className="block py-2 px-4 hover:bg-gray-100">
-              ......
-            </a>
-          </li>
+          {role === "customer" && (
+            <li>
+              <Link
+                to={`/order/${id}`}
+                className="block py-2 px-4 hover:bg-gray-100"
+              >
+                Order
+              </Link>
+            </li>
+          )}
           <li>
             <Link
               to={"/"}

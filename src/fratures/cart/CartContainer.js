@@ -20,6 +20,7 @@ export default function CartContainer() {
       0
     );
     await cartApi.createOrder({ sum });
+    navigate(`/order/${id}`);
     // navigate to Payment Page [use OrderDB]
   };
 
@@ -34,7 +35,7 @@ export default function CartContainer() {
       setCart(cartFromData.data);
     };
     fetchCart();
-  }, [userId]);
+  }, []);
 
   const handleIncre = async (index) => {
     const cloned = [...cart];

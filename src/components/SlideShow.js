@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from "react";
+import pic from "../Pic/pexels-ash-376464.jpg";
+import pic2 from "../Pic/pexels-cats-coming-406152.jpg";
 
-const img = ["red", "blue", "black"];
+const img = [pic, pic2, "https://picsum.photos/200/200/"];
 const delay = 2500;
 export default function SlideShow() {
   const [index, setIndex] = useState(0);
@@ -36,10 +38,11 @@ export default function SlideShow() {
         }}
       >
         {img.map((el, index) => (
-          <div
-            className="h-32 w-full inline-block"
+          <img
+            alt="ex"
+            src={el}
+            className="h-72 w-full inline-block"
             key={index}
-            style={{ backgroundColor: el }}
           />
         ))}
       </div>
