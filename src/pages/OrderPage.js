@@ -13,7 +13,7 @@ export default function OrderPage() {
   useEffect(() => {
     const fetchList = async () => {
       const orderHisDB = await orderApi.getOrder();
-      // console.log(orderHisDB.data);
+      console.log(orderHisDB.data);
       serOrderHis(orderHisDB.data);
     };
     fetchList();
@@ -47,7 +47,11 @@ export default function OrderPage() {
         Upload Sliper
       </button>
       {showModal && (
-        <Modal setShowModal={setShowModal} onClose={() => setShowModal(false)}>
+        <Modal
+          setShowModal={setShowModal}
+          onClose={() => setShowModal(false)}
+          title="Update Slip"
+        >
           <SendRefForm onSuccess={() => setShowModal(false)} />
         </Modal>
       )}

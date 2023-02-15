@@ -1,54 +1,50 @@
-// import useLoading from "../../contexts/LoadingContext";
+import useLoading from "../../hooks/useLoading";
 // import * as orderApi from "../../apis/order-apis";
-// import { useRef, useState } from "react";
+import { useRef, useState } from "react";
 
 export default function SendRefForm({ onSuccess }) {
-  // const [refImg, setRefImg] = useState(null);
+  const [refImg, setRefImg] = useState(null);
 
-  // const { startLoading, stopLoading } = useLoading();
+  const { startLoading, stopLoading } = useLoading();
 
-  // const inputEl = useRef();
+  const inputEl = useRef();
 
-  // const handleClickSave = async () => {
-  //   startLoading();
-  //   const formData = new FormData();
-  //   formData.append("profileImage", refImg);
-  //   // await orderApi.sendRef(formData);
-  //   stopLoading();
-  //   setRefImg(null);
-  //   onSuccess();
-  // };
+  const handleClickSave = async () => {
+    startLoading();
+    const formData = new FormData();
+    formData.append("orderPayRef", refImg);
+    //   // await orderApi.sendRef(formData);
+    stopLoading();
+    setRefImg(null);
+    onSuccess();
+  };
 
   return (
     <>
-      {/* HI
       <input
         type="file"
-        className="d-none"
         ref={inputEl}
         onChange={(e) => {
-          console.dir(e.target);
           if (e.target.files[0]) {
             setRefImg(e.target.files[0]);
           }
         }}
-        //   multiple
       />
       <button
-        className="btn btn-link text-decoration-none hover-bg-gray-100"
         onClick={handleClickSave}
+        className="mr-2 px-4 py-1 text-sm text-black font-semibold rounded-full border bg-slate-100 border-purple-200 hover:text-black hover:bg-slate-200 hover:border-transparent focus:outline-none focus:ring-slate-100 focus:ring-offset-1"
       >
         Save
       </button>
       <button
-        className="btn btn-link text-decoration-none hover-bg-gray-100"
+        className="mr-2 px-4 py-1 text-sm text-black font-semibold rounded-full border bg-red-100 border-purple-200 hover:text-black hover:bg-red-200 hover:border-transparent focus:outline-none focus:ring-slate-100 focus:ring-offset-1"
         onClick={() => {
           setRefImg(null);
           inputEl.current.value = null;
         }}
       >
         Cancel
-      </button> */}
+      </button>
     </>
   );
 }
