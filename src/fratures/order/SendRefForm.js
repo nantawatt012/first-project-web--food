@@ -1,26 +1,27 @@
-import useLoading from "../../contexts/LoadingContext";
-import * as orderApi from "../../apis/order-apis";
-import { useRef, useState } from "react";
+// import useLoading from "../../contexts/LoadingContext";
+// import * as orderApi from "../../apis/order-apis";
+// import { useRef, useState } from "react";
 
 export default function SendRefForm({ onSuccess }) {
-  const [refImg, setRefImg] = useState(null);
+  // const [refImg, setRefImg] = useState(null);
 
-  const { startLoading, stopLoading } = useLoading();
+  // const { startLoading, stopLoading } = useLoading();
 
-  const inputEl = useRef();
+  // const inputEl = useRef();
 
-  const handleClickSave = async () => {
-    startLoading();
-    const formData = new FormData();
-    formData.append("profileImage", refImg);
-    // await orderApi.sendRef(formData);
-    stopLoading();
-    setRefImg(null);
-    onSuccess();
-  };
+  // const handleClickSave = async () => {
+  //   startLoading();
+  //   const formData = new FormData();
+  //   formData.append("profileImage", refImg);
+  //   // await orderApi.sendRef(formData);
+  //   stopLoading();
+  //   setRefImg(null);
+  //   onSuccess();
+  // };
 
   return (
     <>
+      {/* HI
       <input
         type="file"
         className="d-none"
@@ -47,7 +48,7 @@ export default function SendRefForm({ onSuccess }) {
         }}
       >
         Cancel
-      </button>
+      </button> */}
     </>
   );
 }

@@ -8,7 +8,7 @@ import Modal from "../components/Modal";
 
 export default function OrderPage() {
   const [orderHis, serOrderHis] = useState([]);
-  const [open, setOpen] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     const fetchList = async () => {
@@ -31,24 +31,26 @@ export default function OrderPage() {
         <p className="w-40">Price/Item</p>
         <p className="w-40">Order</p>
       </div>
-      {orderHis.map((el) => (
+      {orderHis?.map((el) => (
         <OrderList key={el.id} el={el} />
       ))}
       <p className="mt-4 text-lg font-bold flex w-[80vw] justify-between mx-auto">
-        Total {orderHis[0].Order.sumAmount}
+        Total {orderHis[0]?.Order.sumAmount}
       </p>
       {/* /////////////////////////////////////////// */}
 
       <button
         type="button"
         className="mt-4 flex justify-between mx-auto bg-purple-200 px-2 rounded-md shadow-sm hover:bg-purple-300 active:bg-purple-400"
-        onClick={setOpen(true)}
+        onClick={() => setShowModal(true)}
       >
         Upload Sliper
       </button>
-      <Modal open={open} onClose={() => setOpen(false)}>
-        <SendRefForm onSuccess={() => setOpen(false)} />
-      </Modal>
+      {showModal && (
+        <Modal setShowModal={setShowModal} onClose={() => setShowModal(false)}>
+          <SendRefForm onSuccess={() => setShowModal(false)} />
+        </Modal>
+      )}
       <Footer />
     </div>
   );
