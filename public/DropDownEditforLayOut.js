@@ -46,15 +46,9 @@ export default function DropDownEditforLayOut({ title, children }) {
           isOpen ? "block" : "hidden"
         }`}
       >
-        {" "}
         {
           children
-          //           {/* <div
-          //     id="dropdown"
-          //     className={`absolute right-1 top-[65px] z-10 w-40 bg-white divide-gray-100 rounded divide-y  shadow ${
-          //       isOpen ? "block" : "hidden"
-          //     }`}
-          //   >
+          //           {/*
           //     <ul className=" z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow ">
           //       <li>
           //         {
