@@ -10,12 +10,19 @@ export default function HomePage() {
   const [fProduct, setFProduct] = useState([]);
 
   useEffect(() => {
+    let isCancel = false;
     const fetchProduct = async () => {
       const product = await homeApi.getItemFood();
-      setFProduct(product.data);
-      // console.log(product.data);
+      if (!isCancel) {
+        setFProduct(product.data);
+        // console.log(product.data);
+      }
     };
     fetchProduct();
+    return () => {
+      isCancel = true;
+      console.log("User Canceling..");
+    };
   }, []);
 
   return (

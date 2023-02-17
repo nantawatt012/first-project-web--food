@@ -13,7 +13,7 @@ export default function OrderPage() {
   useEffect(() => {
     const fetchList = async () => {
       const orderHisDB = await orderApi.getOrder();
-      console.log(orderHisDB.data);
+      // console.log(orderHisDB.data);
       serOrderHis(orderHisDB.data);
     };
     fetchList();
@@ -22,10 +22,9 @@ export default function OrderPage() {
   return (
     <div>
       <Header />
-      <h1 className="text-center my-4 font-semibold text-xl">
-        OrderPage/History{" "}
-      </h1>
-      <div className="mt-4 flex w-[80vw] justify-between mx-auto font-semibold">
+      {/* dropdown show list of (His. order and Date of ordered) */}
+      <h1 className="text-center my-4 font-semibold text-xl">OrderPage</h1>
+      <div className="mt-16 flex w-[80vw] justify-between mx-auto font-semibold">
         <p className="w-40"> Name</p>
         <p className="w-40"> Amount</p>
         <p className="w-40">Price/Item</p>

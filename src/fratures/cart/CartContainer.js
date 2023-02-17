@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, useLocation } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 
 import * as cartApi from "../../apis/cart-apis";
@@ -8,6 +8,10 @@ import CartList from "./CartList";
 export default function CartContainer() {
   const [cart, setCart] = useState([]);
   const { userId } = useParams();
+  // const location = useLocation();
+  // console.log(location);
+  // const userId = location.pathname.split("/")[2];
+  // console.log(userId);
   const navigate = useNavigate();
   const {
     authenticatedUser: { id }
@@ -25,7 +29,11 @@ export default function CartContainer() {
   };
 
   useEffect(() => {
-    // console.log(+id, +userId);
+    console.log(cart);
+  }, [cart.length]);
+
+  useEffect(() => {
+    console.log(+id, +userId);
     if (+id !== +userId) {
       navigate("/notfound");
     }
@@ -60,10 +68,12 @@ export default function CartContainer() {
         <p className="font-semibold">price/item</p>
         <p className="font-semibold">amount</p>
       </div>
-
+      <hr />
+      <p>{JSON.stringify(cart, null, 2)}</p>
+      <hr />
       {cart?.map((el, index) => (
         <CartList
-          key={el.id}
+          key={el.Product.id}
           cart={el}
           handleIncre={handleIncre}
           index={index}

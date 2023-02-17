@@ -20,18 +20,28 @@ export default function ItemContainer() {
   // console.log(id);
 
   useEffect(() => {
+    let isCancel = false;
     const fetchItem = async () => {
       const item = await shopApi.getAllItem(shopId);
-      setItems(item.data.items);
+      if (!isCancel) {
+        setItems(item.data.items);
+      }
     };
     fetchItem();
+    return () => {
+      isCancel = true;
+      console.log("User Canceling..");
+    };
   }, [shopId, refresh]);
 
   useEffect(() => {
+    let isCancel = false;
     const fetchOwner = async () => {
       try {
         const shopOwner = await shopApi.getShopOwner(shopId);
-        setShopOwner(shopOwner.data.firstName);
+        if (!isCancel) {
+          setShopOwner(shopOwner.data.firstName);
+        }
         // console.log("first");
         // shopOwner ? console.log(shopOwner) : navigate("/notfound");
       } catch {
@@ -39,7 +49,11 @@ export default function ItemContainer() {
       }
     };
     fetchOwner();
-  });
+    return () => {
+      isCancel = true;
+      console.log("User Canceling..");
+    };
+  }, []);
 
   return (
     <div>
