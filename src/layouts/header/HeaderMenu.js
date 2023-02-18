@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
+// already change to new one
 import DropDown from "../../components/DropDown";
+import DropdownChildHeader from "./DropdownChildHeader";
 
 export default function HeaderMenu() {
   const {
@@ -16,7 +18,11 @@ export default function HeaderMenu() {
           Cart
         </Link>
       ) : null}
-      {role !== "guest" ? <DropDown /> : null}
+      {role !== "guest" ? (
+        <DropDown title="Cart">
+          <DropdownChildHeader />
+        </DropDown>
+      ) : null}
       {role === "guest" ? (
         <Link
           className="mr-2 px-4 py-1 text-sm text-black font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-900 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-1"

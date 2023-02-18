@@ -1,14 +1,8 @@
-import { useState } from "react";
-// import { Link, Navigate } from "react-router-dom";
-import useAuth from "../hooks/useAuth";
+import { Link } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
 
 export default function DropdownChildHeader() {
-  const [isOpen, setOpen] = useState(false);
   const { logout } = useAuth();
-
-  const handleDropDown = () => {
-    setOpen(!isOpen);
-  };
 
   const {
     authenticatedUser: { role, id }
