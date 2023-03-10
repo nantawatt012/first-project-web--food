@@ -19,13 +19,13 @@ export default function HeaderMenu() {
         </Link>
       ) : null}
       {role !== "guest" ? (
-        <DropDown title="Cart">
+        <DropDown title="Menu">
           <DropdownChildHeader />
         </DropDown>
       ) : null}
       {role === "guest" ? (
         <Link
-          className="mr-2 px-4 py-1 text-sm text-black font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-900 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-1"
+          className="mr-2 px-4 py-1 text-sm text-black font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-orange-900 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-1"
           to="/login"
         >
           Login

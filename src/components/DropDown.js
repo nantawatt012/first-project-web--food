@@ -9,7 +9,7 @@ export default function DropDown({ title, children }) {
   return (
     <div className=" dropdown">
       <button
-        className="text-black hover:text-white border border-purple-200 hover:bg-purple-600 focus:ring-4 focus:outline-none focus:ring-transparent font-medium rounded-full text-sm px-4 py-2.5 text-center inline-flex items-center"
+        className="text-black hover:text-white border border-purple-200 hover:bg-orange-800 focus:ring-4 focus:outline-none focus:ring-transparent font-medium rounded-full text-sm px-4 py-2.5 text-center inline-flex items-center"
         onClick={handleDropDown}
       >
         {title}

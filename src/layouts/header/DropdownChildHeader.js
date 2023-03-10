@@ -30,6 +30,16 @@ export default function DropdownChildHeader() {
           </Link>
         </li>
       )}
+      {role !== "guess" && (
+        <li>
+          <Link
+            to={`/orderHistory/${id}`}
+            className="block py-2 px-4 hover:bg-gray-100"
+          >
+            Order History
+          </Link>
+        </li>
+      )}
       <li>
         <Link
           to={"/"}

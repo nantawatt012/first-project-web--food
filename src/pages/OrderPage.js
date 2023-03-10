@@ -5,16 +5,23 @@ import Header from "../layouts/header/Header";
 import * as orderApi from "../apis/order-apis";
 import SendRefForm from "../fratures/order/SendRefForm";
 import Modal from "../components/Modal";
+import DropDown from "../components/DropDown";
 
 export default function OrderPage() {
-  const [orderHis, serOrderHis] = useState([]);
+  const [lastOrder, setLastOrder] = useState([]);
   const [showModal, setShowModal] = useState(false);
+
+  // const handleSubmit = async (e) => {
+  //   if (!orderNum) {
+  //   } else {
+  //   }
+  // };
 
   useEffect(() => {
     const fetchList = async () => {
-      const orderHisDB = await orderApi.getOrder();
+      const orderHisDB = await orderApi.getLastOrder();
       // console.log(orderHisDB.data);
-      serOrderHis(orderHisDB.data);
+      setLastOrder(orderHisDB.data);
     };
     fetchList();
   }, []);
@@ -30,13 +37,12 @@ export default function OrderPage() {
         <p className="w-40">Price/Item</p>
         <p className="w-40">Order</p>
       </div>
-      {orderHis?.map((el) => (
+      {lastOrder?.map((el) => (
         <OrderList key={el.id} el={el} />
       ))}
       <p className="mt-4 text-lg font-bold flex w-[80vw] justify-between mx-auto">
-        Total {orderHis[0]?.Order.sumAmount}
+        Total {lastOrder[0]?.Order.sumAmount}
       </p>
-      {/* /////////////////////////////////////////// */}
 
       <button
         type="button"

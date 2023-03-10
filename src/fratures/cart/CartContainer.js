@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate, useParams, useLocation } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 
 import * as cartApi from "../../apis/cart-apis";
@@ -27,10 +27,6 @@ export default function CartContainer() {
     navigate(`/order/${id}`);
     // navigate to Payment Page [use OrderDB]
   };
-
-  useEffect(() => {
-    console.log(cart);
-  }, [cart.length]);
 
   useEffect(() => {
     console.log(+id, +userId);
@@ -63,14 +59,17 @@ export default function CartContainer() {
 
   return (
     <div>
+      <button className=" bg-purple-200 rounded-md px-4 ml-[5vw] mt-4">
+        <Link to="/orderHistory">History order</Link>
+      </button>
       <div className="min-w-[400px] mt-8 bg-slate-200 w-1/2 mx-auto p-4 px-7 shadow-md outline-4 outline-blue-800 flex justify-between">
         <p className="font-semibold">Product</p>
         <p className="font-semibold">price/item</p>
         <p className="font-semibold">amount</p>
       </div>
-      <hr />
-      <p>{JSON.stringify(cart, null, 2)}</p>
-      <hr />
+      {/* <hr />
+      <p>{JSON.stringify(cart, "don't have", 2)}</p>
+      <hr /> */}
       {cart?.map((el, index) => (
         <CartList
           key={el.Product.id}
