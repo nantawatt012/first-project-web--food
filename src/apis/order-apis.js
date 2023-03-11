@@ -4,4 +4,5 @@ export const getLastOrder = () => axios.get("/order/:userId");
 export const sendRef = (formData) => axios.patch("/order/sendRef", formData);
 
 export const getAllCusHis = () => axios.get("/order/getAll");
+export const getAllSell = () => axios.get("/order/getAllSell");
 export const getAllShop = () => axios.get("/order/:userId");
